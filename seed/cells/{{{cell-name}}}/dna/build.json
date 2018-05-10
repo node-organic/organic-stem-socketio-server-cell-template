@@ -1,0 +1,17 @@
+{
+  "organic-socketio-handlers": {
+    "source": "organic-socketio-handlers",
+    "reactOn": "SocketIOConnection",
+    "basedir": "handlers",
+    "patterns": ["/**/*.js"]
+  },
+  "organic-socketio-server": {
+    "source": "organic-socketio-server",
+    "port": "@cell-ports.{{{cell-name}}}",
+    "log": true,
+    "emit": {
+      "ready": "SocketIOServer",
+      "connection": "SocketIOConnection"
+    }
+  }
+}

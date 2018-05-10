@@ -1,0 +1,35 @@
+{
+  "name": "organic-stem-socketio-server-cell-template",
+  "description": "",
+  "version": "1.0.0",
+  "bin": {
+    "organic-stem-socketio-server-cell-template": "./index.js"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "organic-stack-upgrade": "^1.2.0"
+  },
+  "devDependencies": {
+    "async-request": "^1.2.0",
+    "eslint": "^4.18.2",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "execa": "^0.10.0",
+    "jest": "^22.4.2",
+    "terminate": "^2.1.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/seed/"
+    ]
+  },
+  "stackUpgrades": {
+    "organic-stack-template": "1.0.0"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "{{{cell-name}}}",
+  "version": "1.0.0",
+  "scripts": {
+    "develop": "node ./index.js"
+  },
+  "dependencies": {
+    "organic-stem-cell": "^2.0.0",
+    "organic-socketio-server": "^2.0.0",
+    "organic-socketio-handlers": "^1.0.0",
+    "socket.io": "^2.1.0"
+  }
+}
