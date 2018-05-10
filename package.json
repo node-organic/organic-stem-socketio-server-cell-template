@@ -31,5 +31,16 @@
   },
   "stackUpgrades": {
     "organic-stack-template": "1.0.0"
-  }
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/node-organic/organic-stem-socketio-server-cell-template.git"
+  },
+  "author": "Boris Filipov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/node-organic/organic-stem-socketio-server-cell-template/issues"
+  },
+  "homepage": "https://github.com/node-organic/organic-stem-socketio-server-cell-template#readme"
 }
