@@ -3,6 +3,7 @@ const os = require('os')
 const execa = require('execa')
 const request = require('async-request')
 const terminate = require('terminate')
+const ioclient = require('socket.io-client')
 
 const get = async function (url) {
   return request(url)
@@ -28,7 +29,7 @@ test('stack upgrade', async () => {
   })
 })
 
-test('the cell works', async () => {
+test('the cell works', async (done) => {
   let cmds = [
     'cd ' + tempDir + '/cells/test',
     'node ./index'
@@ -39,5 +40,16 @@ test('the cell works', async () => {
   await timeout(1000)
   let result = await get('http://localhost:13371/socket.io/socket.io.js')
   expect(result.statusCode).toBe(200)
-  terminate(child.pid)
+  let client = ioclient('http://localhost:13371', {
+    transports: ['websocket']
+  })
+  client.on('connect', function () {
+    client.emit('version', (err, v) => {
+      if (err) return done(err)
+      expect(v).toBe('1.0.0')
+      terminate(child.pid)
+      client.close()
+      done()
+    })
+  })
 })

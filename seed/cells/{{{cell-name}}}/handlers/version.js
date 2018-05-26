@@ -1,6 +1,6 @@
 module.exports = function (plasma, dna) {
   let packagejson = require('../package.json')
-  return function (data, cb) {
-    cb(packagejson.version)
+  return function (cb) {
+    cb(null, packagejson.version)
   }
 }

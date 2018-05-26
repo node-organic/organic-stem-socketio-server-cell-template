@@ -6,8 +6,8 @@
   },
   "dependencies": {
     "organic-stem-cell": "^2.0.0",
-    "organic-socketio-server": "^2.0.0",
-    "organic-socketio-handlers": "^1.0.0",
+    "organic-socketio-server": "^2.0.1",
+    "organic-socketio-handlers": "^1.0.1",
     "socket.io": "^2.1.0"
   }
 }

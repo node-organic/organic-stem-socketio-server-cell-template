@@ -1,9 +1,13 @@
 {
   "organic-socketio-handlers": {
     "source": "organic-socketio-handlers",
-    "reactOn": "SocketIOConnection",
+    "reactOn": {
+      "type": "SocketIOConnection",
+      "propertyName": "socket"
+    },
     "basedir": "handlers",
-    "patterns": ["/**/*.js"]
+    "patterns": ["/**/*.js"],
+    "log": true
   },
   "organic-socketio-server": {
     "source": "organic-socketio-server",
