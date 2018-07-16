@@ -44,12 +44,21 @@ test('the cell works', async (done) => {
     transports: ['websocket']
   })
   client.on('connect', function () {
-    client.emit('version', (err, v) => {
-      if (err) return done(err)
-      expect(v).toBe('1.0.0')
+    client.on('chemical', (c) => {
+      expect(c.type).toBe('chemicalVersionResult')
+      expect(c.version).toBe('1.0.0')
       terminate(child.pid)
       client.close()
       done()
+    })
+    // test socketio-handlers
+    client.emit('version', (err, v) => {
+      if (err) return done(err)
+      expect(v).toBe('1.0.0')
+      // test plasma-socketio-channel
+      client.emit('chemical', {
+        type: 'chemicalVersion',
+      })
     })
   })
 })

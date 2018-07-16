@@ -1,4 +1,35 @@
 {
   "groups": {{{cell-groups}}},
-  "mountPoint": "{{{cell-mount-point}}}"
+  "build": {
+    "version": {
+      "source": "./plasma/version"
+    },
+    "organic-socketio-channel": {
+      "source": "organic-plasma-socketio-channel",
+      "reactOnConnection": "SocketIOConnection",
+      "transportChemicalsShape": {
+        "transport": "socketio"
+      },
+      "log": true
+    },
+    "organic-socketio-handlers": {
+      "source": "organic-socketio-handlers",
+      "reactOn": {
+        "type": "SocketIOConnection",
+        "propertyName": "socket"
+      },
+      "basedir": "handlers",
+      "patterns": ["/**/*.js"],
+      "log": true
+    },
+    "organic-socketio-server": {
+      "source": "organic-socketio-server",
+      "port": "@cell-ports.{{{cell-name}}}",
+      "log": true,
+      "emit": {
+        "ready": "SocketIOServer",
+        "connection": "SocketIOConnection"
+      }
+    }
+  }
 }

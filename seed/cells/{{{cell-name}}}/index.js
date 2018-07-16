@@ -4,10 +4,9 @@ const path = require('path')
 
 let cellInstance = new Cell({
   dnaSourcePaths: [
-    path.resolve(__dirname, '../../dna'),
-    path.resolve(__dirname, './dna')
+    path.resolve(__dirname, '../../dna')
   ],
-  buildBranch: 'build',
+  buildBranch: 'cells.{{{cell-name}}}.build',
   cellRoot: __dirname
 })
 
