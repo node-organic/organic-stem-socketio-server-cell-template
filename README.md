@@ -10,5 +10,5 @@ Opinionated standalone socketio server cell. Provides socketio api implementatio
 ```
 $ mkdir ./myProject
 $ cd ./myProject
-$ npx organic-stem-socketio-server-cell-template
+$ npx node-organic/organic-stem-socketio-server-cell-template
 ```
