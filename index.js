@@ -6,27 +6,32 @@ const path = require('path')
 const execute = async function ({destDir = process.cwd(), answers} = {}) {
   let stack = new StackUpgrade({
     destDir: destDir,
-    name: 'organic-stem-socketio-server-cell-template',
-    version: '1.0.0'
+    packagejson: path.join(__dirname, '/package.json')
   })
-  let coreTemplateExists = false
-  try {
-    coreTemplateExists = await stack.checkUpgrade('organic-stem-core-template', '^1.0.0')
-  } catch (e) {
-    // ignore any errors
-    coreTemplateExists = false
+  if (!await stack.checkUpgrade('organic-stem-core-template', '^2.1.0')) {
+    throw new Error('organic-stem-core-template ^2.1.0 not found, are you working into the repo root?')
   }
-  if (!coreTemplateExists) {
-    console.warn('organic-stem-core-template not found...')
-    console.info('force installing organic-angel, angelscripts-help and angelscripts-monorepo')
-    await stack.exec('npm install organic-angel angelscripts-help angelscripts-monorepo --save-dev')
+  let resulted_answers = answers || {}
+  if (!resulted_answers['cell-name']) {
+    resulted_answers['cell-name'] = await stack.ask('cell-name?')
   }
-  console.info('cell-groups can be comma separated list of groups')
-  let resulted_answers = await stack.configure({
-    sourceDir: path.join(__dirname, 'seed'),
-    answers
+  if (!resulted_answers['cwd']) {
+    resulted_answers['cwd'] = await stack.ask(`cwd? (relative to ${destDir}/cells/)`, resulted_answers['cell-name'])
+  }
+  resulted_answers['dnaCellDirPath'] = path.dirname(resulted_answers['cwd'])
+  if (resulted_answers['dnaCellDirPath'] && resulted_answers['dnaCellDirPath'] !== '.') {
+    resulted_answers['build-branch'] = `cells.${resulted_answers['dnaCellDirPath'].split('/').join('.')}.${resulted_answers['cell-name']}.build`
+  } else {
+    resulted_answers['build-branch'] = `cells.${resulted_answers['cell-name']}.build`
+  }
+  if (!resulted_answers['cell-groups']) {
+    resulted_answers['cell-groups'] = await stack.ask('cell-groups? (can be comma separated)')
+    resulted_answers['cell-groups'] = resulted_answers['cell-groups'].split(',').map(v => v.trim())
+  }
+  resulted_answers = await stack.configure({
+    sourceDirs: [path.join(__dirname, 'seed')],
+    answers: resulted_answers
   })
-  resulted_answers['cell-groups'] = JSON.stringify(resulted_answers['cell-groups'].split(',').map(v => v.trim()))
   await stack.merge({
     sourceDir: path.join(__dirname, 'seed'),
     answers: resulted_answers

@@ -1,7 +1,7 @@
 {
   "name": "organic-stem-socketio-server-cell-template",
   "description": "",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "bin": {
     "organic-stem-socketio-server-cell-template": "./index.js"
   },
@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "organic-stack-upgrade": "^1.2.0"
+    "organic-stack-upgrade": "^2.0.0"
   },
   "devDependencies": {
     "async-request": "^1.2.0",
@@ -20,9 +20,10 @@
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "execa": "^0.10.0",
-    "jest": "^22.4.2",
+    "jest": "^23.0.0",
     "socket.io-client": "^2.1.1",
-    "terminate": "^2.1.0"
+    "terminate": "^2.1.0",
+    "organic-stem-core-template": "github:node-organic/organic-stem-core-template"
   },
   "jest": {
     "testPathIgnorePatterns": [

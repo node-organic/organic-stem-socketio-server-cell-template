@@ -1,5 +1,6 @@
 {
   "groups": {{{cell-groups}}},
+  "cwd": "cells/{{{cwd}}}",
   "build": {
     "version": {
       "source": "./plasma/version"
